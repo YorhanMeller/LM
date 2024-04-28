@@ -54,15 +54,21 @@
                 '11.mp3', '12.mp3', '13.mp3', '14.mp3', '15.mp3',
                 'log.mp3'
             ];
+            const sections = [
+                'Materiais', 'Madeiras', 'Elétrica', 'Ferramentas', 'Laminados',
+                'Cerâmica', 'Sanitários', 'Encanamento', 'Jardim', 'Ferragens',
+                'Pintura', 'Decoração', 'Iluminação', 'Organização', 'Cozinhas',
+                'Logistica'
+            ];
             let audio = new Audio();
             let input = '';
 
             sounds.forEach((sound, index) => {
                 const btn = document.createElement('button');
-                btn.textContent = index < 15 ? `Seção ${index + 1}` : 'Logística';
+                btn.textContent = `${index + 1 < 10 ? '0' + (index + 1) : index + 1} - ${sections[index]}`;
                 btn.addEventListener('click', () => {
                     if (audio.duration > 0 && !audio.paused) {
-                        console.log('Wait for the current audio to end before playing the next one');
+                        console.log('Aguarde o áudio atual terminar antes de tocar o próximo');
                     } else {
                         audio = new Audio(sound);
                         audio.play();
@@ -78,7 +84,7 @@
                     const index = parseInt(input) - 1;
                     if (index >= 0 && index < sounds.length) {
                         if (audio.duration > 0 && !audio.paused) {
-                            console.log('Wait for the current audio to end before playing the next one');
+                            console.log('Aguarde o áudio atual terminar antes de tocar o próximo');
                         } else {
                             audio = new Audio(sounds[index]);
                             audio.play();
